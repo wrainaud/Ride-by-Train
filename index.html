@@ -1,0 +1,115 @@
+<!-- William Rainaud
+  Rutgers Coding Bootcamp 
+  Homework 7 - Train Scheduler -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Ride by Train</title>
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" type="image/png" href="" /> -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <!-- Bootswatch Theme Styles -->
+   <link rel="stylesheet" type="text/css" href="https://bootswatch.com/darkly/bootstrap.min.css">
+
+   <!-- Foundation Compressed CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+
+    <!-- Additional Styles -->
+   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+	<!-- Page Title -->	
+	<div class="grid-x grid-padding-x">
+	    <div class="large-12 medium-12 cell">
+  			<div class="callout large alert">
+  				<h1>Ride by Train</h1>
+  				<h3>by William Rainaud</h3>
+			</div>
+		</div>
+	</div>
+		
+		
+	<!-- Current Train Schedule Panel -->
+	<div class="grid-x grid-padding-x">
+		<div class="large-8 medium-8 cell">
+			<div class="panel panel-default">
+	  			<div class="panel-heading">Location</div>
+	  			<div class="panel-body" id="location"></div>
+	  		</div>
+	  	</div>
+	</div>
+
+	<!-- Add Train Schedule Panel -->
+	<div class="contact-panel" id="contact-panel" data-toggler=".is-active">
+	  <a class="contact-panel-button" data-toggle="contact-panel"> + Add Train</a>
+	  <form action="">
+	    <div class="row">
+	      <label> Train Name
+	        <input type="text" placeholder="Full name">
+	      </label>
+	    </div>
+	    <div class="row">
+	      <label> Destination
+	        <input type="email" placeholder="Email address">
+	      </label>
+	    </div>
+	    <div class="row">
+	      <label> First Train Time
+	        <input type="time" placeholder="Email address"></textarea>
+	      </label> 
+	    </div>
+	     <div class="row">
+	      <label> Frequency
+	        <input type="number" placeholder="Email address"></textarea>
+	      </label> 
+	    </div>
+	    <div class="contact-panel-actions">
+	      <button class="cancel-button" data-toggle="contact-panel">Nevermind</button>
+	      <input type="submit" class="button submit-button" value="Submit">
+	    </div>
+	  </form>
+	</div>
+
+	<!-- Footer -->
+	<footer> 
+		<div class="grid-x grid-padding-x">
+	        <div class="large-12 medium-12 cell">
+				<div class="row justify-content-center">
+					<div class="Large-12 text-center">
+						© Copyright 2017 <a href="https://wrainaud.github.io/Responsive-Portfolio/" target="_blank">William J. Rainaud</a> <br/>
+		       		</div>
+				</div>
+			</div>		
+	</footer>
+	
+	<!-- Latest compiled and minified jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Latest compiled and minified BootStrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Added Moment JS -->
+  	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- Compressed Foundation JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+
+	<!-- Javascript File -->
+	<script type="text/javascript" src="assets/js/app.js"></script>
+
+
+
+</body>
+</html>
