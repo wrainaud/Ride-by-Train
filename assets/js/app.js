@@ -1,39 +1,95 @@
-// closes the panel on click outside
-$(document).mouseup(function (e) {
-  var container = $('#contact-panel');
-  if (!container.is(e.target) // if the target of the click isn't the container...
-  && container.has(e.target).length === 0) // ... nor a descendant of the container
-    {
-      container.removeClass('is-active');
-    }
-});
+// William Rainaud
+// Rutgers Coding Bootcamp 
+// Homework 7 - Train Scheduler
 
-// Assumptions
-    var tFrequency = 3;
+// Ready Document
+$(document).ready(function(){
 
-    // Time is 3:30 AM
-    var firstTime = "03:30";
 
-    // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCUFU3piwDLNHVxl-O9kwudo852hMUo8x4",
+    authDomain: "ride-by-train.firebaseapp.com",
+    databaseURL: "https://ride-by-train.firebaseio.com",
+    projectId: "ride-by-train",
+    storageBucket: "",
+    messagingSenderId: "203018430764"
+  };
+  firebase.initializeApp(config);
 
-    // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+  // declare variable for Firebase database
+  var database = firebase.database();
 
-    // Difference between the times
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
+  // declare variable for Current Time
+  var currentTime = moment();
 
-    // Time apart (remainder)
-    var tRemainder = diffTime % tFrequency;
-    console.log(tRemainder);
+  // Function for Time Format
+  function clockTime() {
+  	var Time = moment().format("HH:mm:ss");
+  	var unixTime = moment().format("X");
+  	$("#current-time").html(Time);
+  };
 
-    // Minute Until Train
-    var tMinutesTillTrain = tFrequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+  setInterval(clockTime, 1000);
 
-    // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+  	
+  // Function for updating Time
+  function timeUpdate() {
+    database.ref().once('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+          currentTime = moment().format("X");
+          database.ref(childSnapshot.key).update({
+              lastupdated: currentTime,
+            });
+        });
+    });
+  }
+
+  setInterval(timeUpdate, 10000);
+  }
+
+  // Button for Adding Trains
+  $("#add-train-button").on("click", function(event) {
+
+  	  // prevent page from reloading
+  	  event.preventDefault();
+
+  	  // Grabs user input
+  	  var trainName = $("#train-name").val().trim();
+  	  var trainDestination = $("#train-destination").val().trim();
+  	  var trainTime = moment($("#first-train-time").val().trim(), "HH/MM").format("X");
+  	  var trainAddedTime = moment().format("X");
+  	  var trainFrequency = moment($("#train-frequency").val().trim(), "MM").format("X");
+
+  	  console.log(trainTime)
+
+	  // Creates local "temporary" object for holding employee data
+	  var newTrain = {
+	    name: trainName,
+	    destination: trainDestination,
+	    time: trainTime,
+	    lastupdated: trainAddedTime,
+	    frequency: trainFrequency,
+	  };
+
+	  // Uploads employee data to the database
+	  database.ref().push(newTrain);
+
+	  // Logs everything to console
+	  console.log(newTrain.name);
+	  console.log(newTrain.destination);
+	  console.log(newTrain.time);
+	  console.log(newTrain.lastupdated);
+	  console.log(newTrain.frequency);
+
+	  // Alert
+	  alert("Employee successfully added");
+
+	  // Clears all of the text-boxes
+	  $("#train-name").val("");
+	  $("#train-destination").val("");
+	  $("#first-train-time").val("");
+	  $("#train-frequency").val("");
+	});
+
+ });

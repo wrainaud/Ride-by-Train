@@ -16,89 +16,96 @@
     <!-- Favicon -->
     <!-- <link rel="icon" type="image/png" href="" /> -->
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
-    <!-- Bootswatch Theme Styles -->
-   <link rel="stylesheet" type="text/css" href="https://bootswatch.com/darkly/bootstrap.min.css">
-
-   <!-- Foundation Compressed CSS -->
+   	<!-- Foundation Compressed CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
 
     <!-- Additional Styles -->
-   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+   	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 <body>
 	<!-- Page Title -->	
-	<div class="grid-x grid-padding-x">
-	    <div class="large-12 medium-12 cell">
-  			<div class="callout large alert">
-  				<h1>Ride by Train</h1>
-  				<h3>by William Rainaud</h3>
+	<div class="grid-container">
+		<div class="grid-x grid-padding-x">
+        	<div class="large-12 cell">
+          		<h1>Ride by Train</h1>
+        	</div>
+      	</div>
+			
+			
+		<!-- Current Train Schedule Panel -->
+		<div class="grid-x grid-padding-x">
+			<div class="large-8 medium-8 cell">
+				<div class="callout">
+					<div class="grid-x grid-padding-x">
+              			<div class="large-12 medium-12 cell">
+							<h3> Current Train Schedule </h3>
+						</div>
+					</div>
+
+					<div class="grid-x grid-padding-x">
+              			<div class="large-6 medium-6 cell callout"> 
+              				<h4> Time </h4>
+              			</div>
+
+              			<div class="large-6 medium-6 cell callout"> 
+              				<h4> Weather </h4>
+              			</div>
+		  			</div>
+		  		</div>
+		  	</div>
+		
+
+			<!-- Add Train Schedule Panel -->
+			<div class="large-4 medium-4 cell">
+				<div class="contact-panel callout" id="contact-panel" data-toggler=".is-active">
+				  <h3> Add a Train </h3>
+				  <form action="">
+				    <div class="row">
+				      <label> Train Name
+				        <input class="form-control" id="train-name" type="text" placeholder="Train Name">
+				      </label>
+				    </div>
+				    <div class="row">
+				      <label> Destination
+				        <input class="form-control" id="train-destination" type="text" placeholder="Destination">
+				      </label>
+				    </div>
+				    <div class="row">
+				      <label> First Train Time
+				        <input class="form-control" id="first-train-time" type="text" placeholder="Military Time - HH:MM"></textarea>
+				      </label> 
+				    </div>
+				     <div class="row">
+				      <label> Frequency
+				        <input class="form-control" id="train-destination" type="text" placeholder="Minutes"></textarea>
+				      </label> 
+				    </div>
+				    <div class="contact-panel-actions">
+				      <input type="submit" class="button submit-button expanded" value="Submit">
+				    </div>
+				  </form>
+				</div>
 			</div>
 		</div>
-	</div>
-		
-		
-	<!-- Current Train Schedule Panel -->
-	<div class="grid-x grid-padding-x">
-		<div class="large-8 medium-8 cell">
-			<div class="panel panel-default">
-	  			<div class="panel-heading">Location</div>
-	  			<div class="panel-body" id="location"></div>
-	  		</div>
-	  	</div>
-	</div>
 
-	<!-- Add Train Schedule Panel -->
-	<div class="contact-panel" id="contact-panel" data-toggler=".is-active">
-	  <a class="contact-panel-button" data-toggle="contact-panel"> + Add Train</a>
-	  <form action="">
-	    <div class="row">
-	      <label> Train Name
-	        <input type="text" placeholder="Full name">
-	      </label>
-	    </div>
-	    <div class="row">
-	      <label> Destination
-	        <input type="email" placeholder="Email address">
-	      </label>
-	    </div>
-	    <div class="row">
-	      <label> First Train Time
-	        <input type="time" placeholder="Email address"></textarea>
-	      </label> 
-	    </div>
-	     <div class="row">
-	      <label> Frequency
-	        <input type="number" placeholder="Email address"></textarea>
-	      </label> 
-	    </div>
-	    <div class="contact-panel-actions">
-	      <button class="cancel-button" data-toggle="contact-panel">Nevermind</button>
-	      <input type="submit" class="button submit-button" value="Submit">
-	    </div>
-	  </form>
+		<!-- Footer -->
+		<footer> 
+			<div class="grid-x grid-padding-x">
+		        <div class="large-12 medium-12 cell">
+					<div class="row">
+							© Copyright 2017 <a href="https://wrainaud.github.io/Responsive-Portfolio/" target="_blank">William J. Rainaud</a> <br/>
+			       		</div>
+					</div>
+				</div>		
+		</footer>
 	</div>
-
-	<!-- Footer -->
-	<footer> 
-		<div class="grid-x grid-padding-x">
-	        <div class="large-12 medium-12 cell">
-				<div class="row justify-content-center">
-					<div class="Large-12 text-center">
-						© Copyright 2017 <a href="https://wrainaud.github.io/Responsive-Portfolio/" target="_blank">William J. Rainaud</a> <br/>
-		       		</div>
-				</div>
-			</div>		
-	</footer>
 	
 	<!-- Latest compiled and minified jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-    <!-- Latest compiled and minified BootStrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Added Moment JS -->
   	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -108,8 +115,6 @@
 
 	<!-- Javascript File -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
-
-
 
 </body>
 </html>
