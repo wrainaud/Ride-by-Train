@@ -43,12 +43,25 @@
 					<div class="grid-x grid-padding-x">
               			<div class="large-12 medium-12 cell">
 							<h3> Current Train Schedule </h3>
+								<table class="table" id='train-table'>
+						<thead>
+							<tr>
+								<th>Train Name</th>
+								<th>Destination</th>
+								<th>Next Departure Time:</th>
+								<th>Departure Frequency (mins)</th>
+								<th>Next Train (mins)</th>
+							</tr>
+						</thead>
+						<tbody id="train-table-body">
+						</tbody>
+					</table>
 						</div>
 					</div>
 
 					<div class="grid-x grid-padding-x">
               			<div class="large-6 medium-6 cell callout"> 
-              				<h4> Time </h4>
+              				<h4> Time: <div id="current-time"></div> </h4>
               			</div>
 
               			<div class="large-6 medium-6 cell callout"> 

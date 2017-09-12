@@ -46,7 +46,7 @@ $(document).ready(function(){
   }
 
   setInterval(timeUpdate, 10000);
-  }
+  // ---------------------------------------------------------------
 
   // Button for Adding Trains
   $("#add-train-button").on("click", function(event) {
@@ -92,4 +92,98 @@ $(document).ready(function(){
 	  $("#train-frequency").val("");
 	});
 
- });
+  // Update Trains function
+  function updateTrains(childSnapshot) {
+  	// declare variables
+  	var newAddition;
+  	var nextTrainTime;
+  	var key = childSnapshot.key;
+  	var trainName = childSnapshot.val().name;
+  	var trainDestination = childSnapshot.val().destination;
+  	var trainTime = childSnapshot.val().time;
+  	var trainFrequency = childSnapshot.val().frequency;
+  	var timeConverted = moment.unix(trainTime);
+
+  	var timeDifference = moment().diff(moment(timeConverted, 'HH:mm'), 'minutes');
+  	var timeCalculator = timeDifference % parseInt(frequency);
+  	var timeTotal = parseInt(frequency) - timeCalculator;
+
+  	// If / Else Function to make sure the total time is greater than 0
+  	if (timeTotal >= 0) {
+  		nextTrainTime = moment().add(timeTotal, 'minutes').format('hh:mm A');
+  	}
+  	else{
+  		nextTrainTime = timeConverted.format('hh:mm A');
+  		timeTotal = Math.abs(timeDifference - 1);
+  	}
+
+  	// New train addition to database
+  	newAddition = $('<tr>');
+  		newAddition.addClass(key);
+  		newAddition.append($('<td>').text(trainName))
+  				   .append($('<td>').text(trainDestination))
+  				   .append($('<td>').text(nextTrainTime))
+  				   .append($('<td>').text(trainFrequency))
+  				   .append($('<td>').text(timeTotal))
+  				   .append($('<button>').addClass("delete clear button alert").attr("data-train", key).html($('<i>').text("Delete")));
+  	$('tbody').append(newAddition);
+  }
+
+  // Train Change function
+  function trainChange (childSnapshot) {
+  	// declare variables
+  	var newAddition;
+  	var nextTrainTime;
+  	var key = childSnapshot.key;
+  	var trainName = childSnapshot.val().name;
+  	var trainDestination = childSnapshot.val().destination;
+  	var trainTime = childSnapshot.val().time;
+  	var trainFrequency = childSnapshot.val().frequency;
+  	var timeConverted = moment.unix(trainTime);
+
+  	var timeDifference = moment().diff(moment(timeConverted, 'HH:mm'), 'minutes');
+  	var timeCalculator = timeDifference % parseInt(frequency);
+  	var timeTotal = parseInt(frequency) - timeCalculator;
+
+  	// If / Else Function to make sure the total time is greater than 0
+  	if (timeTotal >= 0) {
+  		nextTrainTime = moment().add(timeTotal, 'minutes').format('hh:mm A');
+  	}
+  	else{
+  		nextTrainTime = timeConverted.format('hh:mm A');
+  		timeTotal = Math.abs(timeDifference - 1);
+  	}
+
+  	// New train addition to database
+  	$('.' + key).empty();
+  	$('.' + key).append(
+		$('<td>').text(trainName),
+    	$('<td>').text(trainDestination),
+    	$('<td>').text(nextTrainTime),
+    	$('<td>').text(trainFrequency),
+    	$('<td>').text(timeTotal),
+    	$('<button>').addClass("delete clear button alert")
+    				 .attr("data-train", key)
+    				 .html($('<i>')
+    				 .text("Delete")));
+  }
+
+  	// Database listener to call updateTrains function
+  	database.ref().on('child_added', function(childSnapshot) {
+        updateTrains(childSnapshot);
+    });
+
+  	// Database listener to call trainChange function
+    database.ref().on('child_changed', function(childSnapshot) {
+        trainChange(childSnapshot);
+    });
+
+
+    $(document).on('click', '.delete', function(event) {
+        var key = $(this).attr('data-train');
+        database.ref(key).remove();
+        $('.' + key).remove();
+    });
+
+});
+
