@@ -25,7 +25,7 @@ $(document).ready(function(){
 
   // Function for Time Format
   function clockTime() {
-  	var Time = moment().format("HH:mm:ss");
+  	var Time = moment().format("LTS");
   	var unixTime = moment().format("X");
   	$("#current-time").html(Time);
   };
@@ -57,11 +57,9 @@ $(document).ready(function(){
   	  // Grabs user input
   	  var trainName = $("#train-name").val().trim();
   	  var trainDestination = $("#train-destination").val().trim();
-  	  var trainTime = moment($("#first-train-time").val().trim(), "HH/MM").format("X");
+  	  var trainTime = moment($("#first-train-time").val().trim(), "HH:mm").format("X");
   	  var trainAddedTime = moment().format("X");
-  	  var trainFrequency = moment($("#train-frequency").val().trim(), "MM").format("X");
-
-  	  console.log(trainTime)
+  	  var trainFrequency = $("#train-frequency").val().trim();
 
 	  // Creates local "temporary" object for holding employee data
 	  var newTrain = {
@@ -69,7 +67,7 @@ $(document).ready(function(){
 	    destination: trainDestination,
 	    time: trainTime,
 	    lastupdated: trainAddedTime,
-	    frequency: trainFrequency,
+	    frequency: trainFrequency
 	  };
 
 	  // Uploads employee data to the database
@@ -81,9 +79,6 @@ $(document).ready(function(){
 	  console.log(newTrain.time);
 	  console.log(newTrain.lastupdated);
 	  console.log(newTrain.frequency);
-
-	  // Alert
-	  alert("Employee successfully added");
 
 	  // Clears all of the text-boxes
 	  $("#train-name").val("");
@@ -105,8 +100,8 @@ $(document).ready(function(){
   	var timeConverted = moment.unix(trainTime);
 
   	var timeDifference = moment().diff(moment(timeConverted, 'HH:mm'), 'minutes');
-  	var timeCalculator = timeDifference % parseInt(frequency);
-  	var timeTotal = parseInt(frequency) - timeCalculator;
+  	var timeCalculator = timeDifference % parseInt(trainFrequency);
+  	var timeTotal = parseInt(trainFrequency) - timeCalculator;
 
   	// If / Else Function to make sure the total time is greater than 0
   	if (timeTotal >= 0) {
@@ -120,13 +115,16 @@ $(document).ready(function(){
   	// New train addition to database
   	newAddition = $('<tr>');
   		newAddition.addClass(key);
+      newAddition.addClass(table-striped);
   		newAddition.append($('<td>').text(trainName))
   				   .append($('<td>').text(trainDestination))
   				   .append($('<td>').text(nextTrainTime))
   				   .append($('<td>').text(trainFrequency))
   				   .append($('<td>').text(timeTotal))
-  				   .append($('<button>').addClass("delete clear button alert").attr("data-train", key).html($('<i>').text("Delete")));
-  	$('tbody').append(newAddition);
+  				   .append($('<button>').addClass("btn btn-danger delete glyphicon glyphicon-ban-circle")
+                                  .attr("data-train", key)
+                                  .html($('<i>')));
+  	$('#train-table-body').append(newAddition);
   }
 
   // Train Change function
@@ -142,8 +140,8 @@ $(document).ready(function(){
   	var timeConverted = moment.unix(trainTime);
 
   	var timeDifference = moment().diff(moment(timeConverted, 'HH:mm'), 'minutes');
-  	var timeCalculator = timeDifference % parseInt(frequency);
-  	var timeTotal = parseInt(frequency) - timeCalculator;
+  	var timeCalculator = timeDifference % parseInt(trainFrequency);
+  	var timeTotal = parseInt(trainFrequency) - timeCalculator;
 
   	// If / Else Function to make sure the total time is greater than 0
   	if (timeTotal >= 0) {
@@ -162,10 +160,10 @@ $(document).ready(function(){
     	$('<td>').text(nextTrainTime),
     	$('<td>').text(trainFrequency),
     	$('<td>').text(timeTotal),
-    	$('<button>').addClass("delete clear button alert")
-    				 .attr("data-train", key)
-    				 .html($('<i>')
-    				 .text("Delete")));
+    	$('<button>').addClass("btn btn-danger delete glyphicon glyphicon-ban-circle")
+                   .attr("data-train", key)
+                   .html($('<i>')));
+    				
   }
 
   	// Database listener to call updateTrains function
