@@ -1,0 +1,36 @@
+/* William Rainaud
+   Rutgers Coding Bootcamp 
+   Homework Assignment 7 - Train Scheduler */
+
+   html{
+    max-height: none;
+   }
+
+   body{
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+  }
+
+  .navBer{
+    background-color: #ff851b;
+  }
+
+  .navbar-brand{
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .nuTitle{
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .nuTitle2{
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+.container{
+    margin-top: 70px;
+  }

@@ -115,7 +115,6 @@ $(document).ready(function(){
   	// New train addition to database
   	newAddition = $('<tr>');
   		newAddition.addClass(key);
-      newAddition.addClass(table-striped);
   		newAddition.append($('<td>').text(trainName))
   				   .append($('<td>').text(trainDestination))
   				   .append($('<td>').text(nextTrainTime))
