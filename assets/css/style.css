@@ -2,14 +2,18 @@
    Rutgers Coding Bootcamp 
    Homework Assignment 7 - Train Scheduler */
 
-   html{
+html{
     max-height: none;
    }
 
-   body{
-    background-image: url("../images/bg.jpg");
+body{
+    background-image: url("../images/train.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     background-size: cover;
-  }
+}
 
   .navBer{
     background-color: #ff851b;
@@ -34,3 +38,13 @@
 .container{
     margin-top: 70px;
   }
+
+#high-temp{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#low-temp{
+  padding-left: 10px;
+  padding-right: 10px;
+}

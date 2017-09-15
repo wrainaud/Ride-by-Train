@@ -14,13 +14,16 @@
     <title> Ride by Train</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png"/>
+    <link rel="icon" type="image/png" href="assets/images/faviconR.png"/>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Bootswatch Theme: Lumen -->
     <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+
+    <!-- Weather Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.css"
 
    	<!-- Foundation Compressed CSS -->
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css"> -->
@@ -30,6 +33,9 @@
 
 </head>
 <body>
+		<!-- Background -->
+		<div id="background"></div>
+		
 		<!-- Page Title -->	
 		<nav class="navbar navbar-fixed-top navBer">
 		    <div class="navbar-header">
@@ -73,7 +79,14 @@
 								<div class="col-md-5">
 									<div class="panel panel-warning">
   										<div class="panel-heading"><div class="nuTitle2">Weather</div></div>
-			              				<div class="panel-body"> Blank Space for Weather</div>
+			              				<div class="panel-body">
+			              					<div id="weather">
+			              						<p><span id="location"></span></p>
+			              						<p><span id="desc"></span></p>
+			              						<p><span id="current-temp"></span></p>
+          										<p><span id="high-temp"></span> | <span id="low-temp"></span></p>
+			              					</div>
+			              				</div>
 			              			</div>
 			              		</div>
 			              	</div>
@@ -125,13 +138,17 @@
 		</div>
 
 		<!-- Footer -->
-		<footer> 
+		
+		<div class="footer navbar-fixed-bottom navBer">
 			<div class="row justify-content-center">
-		        <div class="col-lg-12 text-center">
-							© Copyright 2017 <a href="https://wrainaud.github.io/Responsive-Portfolio/" target="_blank">William J. Rainaud</a> <br/>
+	        	<div class="col-lg-12 text-center">
+					<div class="navbar-brand"> 
+						© Copyright 2017 <a href="https://wrainaud.github.io/Responsive-Portfolio/" target="_blank"> William J. Rainaud</a> <br/> 
 					</div>
-				</div>		
-		</footer>
+				</div>
+			</div>
+		</div>		
+		
 
 	
 	<!-- Latest compiled and minified jQuery -->
@@ -151,6 +168,7 @@
 
 	<!-- Javascript File -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/weather.js"></script>
 
 </body>
 </html>
