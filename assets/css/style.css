@@ -2,6 +2,8 @@
    Rutgers Coding Bootcamp 
    Homework Assignment 7 - Train Scheduler */
 
+@font-face {font-family: Digital; src: url("digital-7.ttf"); }
+
 html{
     max-height: none;
    }
@@ -40,11 +42,26 @@ body{
   }
 
 #high-temp{
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 #low-temp{
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
+
+#map-canvas{
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.pnl{
+  background-color: #fde9d6;
+}
+
+#current-time{
+  font-family: Digital;
+  font-size: 35px;
+  color: #2d862d;
+}   
