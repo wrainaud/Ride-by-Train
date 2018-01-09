@@ -3,6 +3,8 @@ Ride-by-Train - A train scheduling application that lets users create, edit,and 
 
 **Live Demo**: https://wrainaud.github.io/Ride-by-Train/
 
+<img src="assets/images/screenshot.png" alt="Ride-by-Train Screenshot" align="center" />
+
 Table of Contents
 -------
 
