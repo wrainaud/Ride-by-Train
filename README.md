@@ -1,7 +1,7 @@
 # Ride-by-Train
-Ride-by-Train - A train scheduling application that lets users create, edit,and save train schedules.
+A train scheduling application that lets users create, edit, and save train schedules.
 
-**Live Demo**: https://wrainaud.github.io/Ride-by-Train/
+**Live Demo**: https://ridebytrain.herokuapp.com/
 
 <img src="assets/images/screenshot.png" alt="Ride-by-Train Screenshot" align="center" />
 
