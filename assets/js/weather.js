@@ -17,7 +17,7 @@ $(document).ready(function () {
 
   function getWeather(lat, lon) {
 
-    var owAPIurl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&APPID=4e0ae26b68029fdb4141d49a573c0b8f";
+    var owAPIurl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&APPID=" + OW_API_Key;
 
     $.ajax({
         url: owAPIurl,
