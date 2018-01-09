@@ -49,6 +49,12 @@ Technologies
 
 Obtaining API Keys
 -------
+<img src="https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/logo_OpenWeatherMap_orange.svg" width="200">
+
+- Visit <a href="https://openweathermap.org/api" target="_blank">Open Weather Map</a>
+- Sign up for an account <a href="http://home.openweathermap.org/users/sign_up" target="_blank"> Here </a>
+- Once you have your API Key, add this line to the `config.js` file: `OW_API_Key: '{API KEY GOES HERE}'`
+<hr>
 
 <img src="https://firebase.google.com/_static/f6e16de9fa/images/firebase/lockup.png" width="200">
 
@@ -78,11 +84,7 @@ e.g. `http://my-awesome-app.herokuapp.com` and
 The same goes for other providers.
 <hr>
 
-<img src="https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/logo_OpenWeatherMap_orange.svg" width="200">
 
-- Visit <a href="https://openweathermap.org/api" target="_blank">Open Weather Map</a>
-- Sign up for an account <a href="http://home.openweathermap.org/users/sign_up" target="_blank"> Here </a>
-- Once you have your API Key, add this line to the `config.js` file: `OW_API_Key: '{API KEY GOES HERE}'`
 
 
 Project Structure

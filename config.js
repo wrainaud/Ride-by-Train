@@ -1,5 +1,5 @@
 
-OW_API_Key: '4e0ae26b68029fdb4141d49a573c0b8f';
+ var OW_API_Key= '4e0ae26b68029fdb4141d49a573c0b8f';
 
 var config = {
     apiKey: "AIzaSyCUFU3piwDLNHVxl-O9kwudo852hMUo8x4",
