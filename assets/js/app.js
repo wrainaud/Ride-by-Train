@@ -1,12 +1,5 @@
-// William Rainaud
-// Rutgers Coding Bootcamp 
-// Homework 7 - Train Scheduler
-
-// Ready Document
 $(document).ready(function(){
 
-
-  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCUFU3piwDLNHVxl-O9kwudo852hMUo8x4",
     authDomain: "ride-by-train.firebaseapp.com",
@@ -17,13 +10,10 @@ $(document).ready(function(){
   };
   firebase.initializeApp(config);
 
-  // declare variable for Firebase database
   var database = firebase.database();
 
-  // declare variable for Current Time
   var currentTime = moment();
 
-  // Function for Time Format
   function clockTime() {
   	var Time = moment().format("LTS");
   	var unixTime = moment().format("X");
@@ -32,8 +22,6 @@ $(document).ready(function(){
 
   setInterval(clockTime, 1000);
 
-  	
-  // Function for updating Time
   function timeUpdate() {
     database.ref().once('value', function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
@@ -46,22 +34,17 @@ $(document).ready(function(){
   }
 
   setInterval(timeUpdate, 10000);
-  // ---------------------------------------------------------------
 
-  // Button for Adding Trains
   $("#add-train-button").on("click", function(event) {
 
-  	  // prevent page from reloading
   	  event.preventDefault();
 
-  	  // Grabs user input
   	  var trainName = $("#train-name").val().trim();
   	  var trainDestination = $("#train-destination").val().trim();
   	  var trainTime = moment($("#first-train-time").val().trim(), "HH:mm").format("X");
   	  var trainAddedTime = moment().format("X");
   	  var trainFrequency = $("#train-frequency").val().trim();
 
-	  // Creates local "temporary" object for holding employee data
 	  var newTrain = {
 	    name: trainName,
 	    destination: trainDestination,
@@ -70,26 +53,22 @@ $(document).ready(function(){
 	    frequency: trainFrequency
 	  };
 
-	  // Uploads employee data to the database
 	  database.ref().push(newTrain);
 
-	  // Logs everything to console
 	  console.log(newTrain.name);
 	  console.log(newTrain.destination);
 	  console.log(newTrain.time);
 	  console.log(newTrain.lastupdated);
 	  console.log(newTrain.frequency);
 
-	  // Clears all of the text-boxes
 	  $("#train-name").val("");
 	  $("#train-destination").val("");
 	  $("#first-train-time").val("");
 	  $("#train-frequency").val("");
 	});
 
-  // Update Trains function
   function updateTrains(childSnapshot) {
-  	// declare variables
+
   	var newAddition;
   	var nextTrainTime;
   	var key = childSnapshot.key;
@@ -103,7 +82,6 @@ $(document).ready(function(){
   	var timeCalculator = timeDifference % parseInt(trainFrequency);
   	var timeTotal = parseInt(trainFrequency) - timeCalculator;
 
-  	// If / Else Function to make sure the total time is greater than 0
   	if (timeTotal >= 0) {
   		nextTrainTime = moment().add(timeTotal, 'minutes').format('hh:mm A');
   	}
@@ -112,7 +90,7 @@ $(document).ready(function(){
   		timeTotal = Math.abs(timeDifference - 1);
   	}
 
-  	// New train addition to database
+
   	newAddition = $('<tr>');
   		newAddition.addClass(key);
   		newAddition.append($('<td>').text(trainName))
@@ -126,9 +104,8 @@ $(document).ready(function(){
   	$('#train-table-body').append(newAddition);
   }
 
-  // Train Change function
   function trainChange (childSnapshot) {
-  	// declare variables
+
   	var newAddition;
   	var nextTrainTime;
   	var key = childSnapshot.key;
@@ -142,7 +119,6 @@ $(document).ready(function(){
   	var timeCalculator = timeDifference % parseInt(trainFrequency);
   	var timeTotal = parseInt(trainFrequency) - timeCalculator;
 
-  	// If / Else Function to make sure the total time is greater than 0
   	if (timeTotal >= 0) {
   		nextTrainTime = moment().add(timeTotal, 'minutes').format('hh:mm A');
   	}
@@ -151,7 +127,6 @@ $(document).ready(function(){
   		timeTotal = Math.abs(timeDifference - 1);
   	}
 
-  	// New train addition to database
   	$('.' + key).empty();
   	$('.' + key).append(
 		$('<td>').text(trainName),
@@ -165,17 +140,14 @@ $(document).ready(function(){
     				
   }
 
-  	// Database listener to call updateTrains function
   	database.ref().on('child_added', function(childSnapshot) {
         updateTrains(childSnapshot);
     });
 
-  	// Database listener to call trainChange function
     database.ref().on('child_changed', function(childSnapshot) {
         trainChange(childSnapshot);
-    });
-
-
+	});
+	
     $(document).on('click', '.delete', function(event) {
         var key = $(this).attr('data-train');
         database.ref(key).remove();
