@@ -61,7 +61,7 @@ Obtaining API Keys
 <img src="https://firebase.google.com/_static/f6e16de9fa/images/firebase/lockup.png" width="200">
 
 - Visit <a href="https://console.firebase.google.com" target="_blank">Firebase Console</a>
-- Click on the **Create Project** button
+- Click on the **Create Project** button!
 - Enter *Project Name*, then click on **Create** button
 - Then click on *APIs & auth* in the sidebar and select *API* tab
 - Click on **Google+ API** under *Social APIs*, then click **Enable API**
